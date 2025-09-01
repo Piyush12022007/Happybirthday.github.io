@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Ansh! 🎂</title>
+    <link rel="stylesheet" href="birthday.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cinzel:wght@400;600&family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Video Background -->
+    <div class="video-background">
+      <video id="bgVideo" autoplay muted loop>
+        <source src="bmw-video1.mp4" type="video/mp4" />
+      </video>
+      <div class="video-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-brand">
+        <div class="bmw-logo-nav"></div>
+        <span>ANSH</span>
+      </div>
+      <div class="nav-links">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#wallpapers" class="nav-link">Wallpapers</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section id="home" class="hero-section">
+        <div class="hero-content">
+          <div class="hero-logo">
+            <div class="bmw-logo-hero"></div>
+          </div>
+          <h1 class="hero-title">Happy Birthday</h1>
+          <h2 class="hero-name">ANSH</h2>
+          <p class="hero-subtitle">
+            Celebrating with the Ultimate Driving Machine
+          </p>
+
+          <div class="car-specs">
+            <div class="spec-item">
+              <span class="spec-value">627</span>
+              <span class="spec-label">HP</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-value">2.9s</span>
+              <span class="spec-label">0-60</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-value">V8</span>
+              <span class="spec-label">TwinPower</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery Section -->
+      <section id="gallery" class="gallery-section">
+        <div class="section-header">
+          <h2>BMW M5 CS Gallery</h2>
+          <p>Pure Performance, Pure Elegance</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="bmw-m5-1.jpg" alt="BMW M5 CS Front View" />
+            <div class="gallery-overlay">
+              <h3>Front View</h3>
+              <p>Aggressive Design</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="bmw-m5-2.jpg" alt="BMW M5 CS Side View" />
+            <div class="gallery-overlay">
+              <h3>Side Profile</h3>
+              <p>Perfect Proportions</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="bmw-m5-3.jpg" alt="BMW M5 CS Interior" />
+            <div class="gallery-overlay">
+              <h3>Interior</h3>
+              <p>Luxury & Sport</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="bmw-m5-4.jpg" alt="BMW M5 CS Rear View" />
+            <div class="gallery-overlay">
+              <h3>Rear View</h3>
+              <p>Powerful Presence</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Wallpapers Section -->
+      <section id="wallpapers" class="wallpapers-section">
+        <div class="section-header">
+          <h2>Premium Wallpapers</h2>
+          <p>Download High-Resolution BMW M5 CS Wallpapers</p>
+        </div>
+
+        <div class="wallpaper-categories">
+          <!-- Desktop Wallpapers -->
+          <div class="wallpaper-category">
+            <div class="category-header">
+              <h3>Desktop Wallpapers</h3>
+              <span class="resolution">4K & 2K</span>
+            </div>
+            <div class="wallpaper-grid">
+              <div class="wallpaper-item desktop">
+                <img src="wallpaper-desktop-1.jpg" alt="BMW M5 CS Desktop 1" />
+                <div class="wallpaper-overlay">
+                  <div class="wallpaper-info">
+                    <span class="resolution-badge">4K</span>
+                    <span class="dimensions">3840x2160</span>
+                  </div>
+                  <button
+                    class="download-btn"
+                    onclick="downloadWallpaper('wallpaper-desktop-1.jpg', 'BMW-M5-CS-Desktop-4K')"
+                  >
+                    <span>Download</span>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                      ></path>
+                      <polyline points="7,10 12,15 17,10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="wallpaper-item desktop">
+                <img src="wallpaper-desktop-2.jpg" alt="BMW M5 CS Desktop 2" />
+                <div class="wallpaper-overlay">
+                  <div class="wallpaper-info">
+                    <span class="resolution-badge">2K</span>
+                    <span class="dimensions">2560x1440</span>
+                  </div>
+                  <button
+                    class="download-btn"
+                    onclick="downloadWallpaper('wallpaper-desktop-2.jpg', 'BMW-M5-CS-Desktop-2K')"
+                  >
+                    <span>Download</span>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                      ></path>
+                      <polyline points="7,10 12,15 17,10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Wallpapers -->
+          <div class="wallpaper-category">
+            <div class="category-header">
+              <h3>Mobile Wallpapers</h3>
+              <span class="resolution">HD & FHD</span>
+            </div>
+            <div class="wallpaper-grid">
+              <div class="wallpaper-item mobile">
+                <img src="wallpaper-mobile-1.jpg" alt="BMW M5 CS Mobile 1" />
+                <div class="wallpaper-overlay">
+                  <div class="wallpaper-info">
+                    <span class="resolution-badge">FHD</span>
+                    <span class="dimensions">1080x1920</span>
+                  </div>
+                  <button
+                    class="download-btn"
+                    onclick="downloadWallpaper('wallpaper-mobile-1.jpg', 'BMW-M5-CS-Mobile-FHD')"
+                  >
+                    <span>Download</span>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                      ></path>
+                      <polyline points="7,10 12,15 17,10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="wallpaper-item mobile">
+                <img src="wallpaper-mobile-2.jpg" alt="BMW M5 CS Mobile 2" />
+                <div class="wallpaper-overlay">
+                  <div class="wallpaper-info">
+                    <span class="resolution-badge">HD</span>
+                    <span class="dimensions">720x1280</span>
+                  </div>
+                  <button
+                    class="download-btn"
+                    onclick="downloadWallpaper('wallpaper-mobile-2.jpg', 'BMW-M5-CS-Mobile-HD')"
+                  >
+                    <span>Download</span>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                      ></path>
+                      <polyline points="7,10 12,15 17,10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+      <div class="floating-item">🎉</div>
+      <div class="floating-item">🏁</div>
+      <div class="floating-item">🎊</div>
+      <div class="floating-item">🏎️</div>
+      <div class="floating-item">🎂</div>
+      <div class="floating-item">✨</div>
+    </div>
+
+    <script src="birthday.js"></script>
+  </body>
+</html>
