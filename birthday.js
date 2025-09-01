@@ -33,6 +33,15 @@ document.addEventListener("DOMContentLoaded", function () {
 // Video Background Management
 function initializeVideoBackground() {
   const videoElement = document.getElementById("bgVideo");
+  const videoContainer = document.querySelector(".video-background");
+
+  // Check if video element exists
+  if (!videoElement) {
+    console.log("Video element not found, using fallback background");
+    setFallbackBackground();
+    return;
+  }
+
   const videoSources = [
     "bmw-video1.mp4",
     "bmw-video2.mp4",
@@ -40,31 +49,48 @@ function initializeVideoBackground() {
     "bmw-video4.mp4",
   ];
 
-  // Randomly select a video on page load
-  const randomVideo =
-    videoSources[Math.floor(Math.random() * videoSources.length)];
-  videoElement.src = randomVideo;
+  // Function to set fallback background
+  function setFallbackBackground() {
+    if (videoContainer) {
+      videoContainer.style.background =
+        "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)";
+    }
+    document.body.style.background =
+      "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)";
+  }
 
-  // Add video switching on refresh
-  window.addEventListener("beforeunload", function () {
-    const nextVideo =
-      videoSources[Math.floor(Math.random() * videoSources.length)];
-    localStorage.setItem("nextVideo", nextVideo);
-  });
+  // Try to load a video, but fallback gracefully
+  let videoLoaded = false;
 
-  // Load saved video if available
-  const savedVideo = localStorage.getItem("nextVideo");
-  if (savedVideo && videoSources.includes(savedVideo)) {
-    videoElement.src = savedVideo;
-    localStorage.removeItem("nextVideo");
+  // Try each video source
+  for (let i = 0; i < videoSources.length; i++) {
+    const testVideo = new Image();
+    testVideo.onload = function () {
+      if (!videoLoaded) {
+        videoLoaded = true;
+        videoElement.src = videoSources[i];
+        console.log(`Video loaded: ${videoSources[i]}`);
+      }
+    };
+    testVideo.onerror = function () {
+      console.log(`Video not found: ${videoSources[i]}`);
+      if (i === videoSources.length - 1 && !videoLoaded) {
+        setFallbackBackground();
+      }
+    };
+    testVideo.src = videoSources[i];
   }
 
   // Add video error handling
   videoElement.addEventListener("error", function () {
     console.log("Video failed to load, using fallback");
-    videoElement.style.display = "none";
-    document.body.style.background =
-      "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)";
+    setFallbackBackground();
+  });
+
+  // Add video load success
+  videoElement.addEventListener("loadeddata", function () {
+    console.log("Video loaded successfully");
+    videoElement.style.display = "block";
   });
 }
 

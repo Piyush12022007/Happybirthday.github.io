@@ -10,6 +10,7 @@ body {
     color: #fff;
     overflow-x: hidden;
     line-height: 1.6;
+    min-height: 100vh;
 }
 
 /* Video Background */
@@ -20,12 +21,14 @@ body {
     width: 100%;
     height: 100%;
     z-index: -2;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
 }
 
 .video-background video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: none; /* Hidden by default, shown when loaded */
 }
 
 .video-overlay {
@@ -147,6 +150,8 @@ body {
 /* Main Content */
 .main-content {
     padding-top: 80px;
+    position: relative;
+    z-index: 1;
 }
 
 /* Hero Section */
@@ -157,15 +162,19 @@ body {
     justify-content: center;
     text-align: center;
     position: relative;
+    padding: 20px;
 }
 
 .hero-content {
     max-width: 800px;
     padding: 0 20px;
+    width: 100%;
 }
 
 .hero-logo {
     margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .bmw-logo-hero {
@@ -215,46 +224,55 @@ body {
 
 .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 8vw, 4rem);
     font-weight: 700;
     color: #fff;
     margin-bottom: 10px;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+    letter-spacing: 2px;
 }
 
 .hero-name {
     font-family: 'Cinzel', serif;
-    font-size: 5rem;
+    font-size: clamp(3rem, 10vw, 5rem);
     font-weight: 700;
     color: #0066b1;
-    letter-spacing: 15px;
+    letter-spacing: clamp(8px, 2vw, 15px);
     margin-bottom: 20px;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
     animation: nameGlow 2s ease-in-out infinite alternate;
+    line-height: 1.1;
 }
 
 .hero-subtitle {
-    font-size: 1.3rem;
+    font-size: clamp(1rem, 3vw, 1.3rem);
     color: #ccc;
     margin-bottom: 40px;
     font-weight: 300;
+    line-height: 1.4;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .car-specs {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: clamp(20px, 4vw, 40px);
     margin-top: 40px;
+    flex-wrap: wrap;
 }
 
 .spec-item {
     text-align: center;
-    padding: 20px;
+    padding: clamp(15px, 3vw, 20px);
     background: rgba(0, 102, 177, 0.1);
     border: 1px solid rgba(0, 102, 177, 0.3);
     border-radius: 15px;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    min-width: 120px;
 }
 
 .spec-item:hover {
@@ -265,22 +283,24 @@ body {
 
 .spec-value {
     display: block;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     font-weight: 700;
     color: #0066b1;
     margin-bottom: 5px;
+    line-height: 1;
 }
 
 .spec-label {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     color: #ccc;
     text-transform: uppercase;
     letter-spacing: 1px;
+    line-height: 1.2;
 }
 
 /* Gallery Section */
 .gallery-section {
-    padding: 100px 40px;
+    padding: clamp(60px, 10vw, 100px) 40px;
     background: rgba(0, 0, 0, 0.8);
 }
 
@@ -291,21 +311,23 @@ body {
 
 .section-header h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-size: clamp(2rem, 6vw, 3rem);
     font-weight: 700;
     color: #fff;
     margin-bottom: 15px;
+    line-height: 1.2;
 }
 
 .section-header p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: #ccc;
     font-weight: 300;
+    line-height: 1.4;
 }
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
@@ -317,6 +339,8 @@ body {
     overflow: hidden;
     aspect-ratio: 16/9;
     transition: all 0.3s ease;
+    background: #1a1a1a;
+    min-height: 200px;
 }
 
 .gallery-item img {
@@ -328,6 +352,33 @@ body {
 
 .gallery-item:hover img {
     transform: scale(1.1);
+}
+
+/* Fallback for missing images */
+.gallery-item::before {
+    content: 'BMW M5 CS';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #0066b1;
+    font-size: 1.5rem;
+    font-weight: 600;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item img:not([src]), 
+.gallery-item img[src=""],
+.gallery-item img[src*="error"] {
+    opacity: 0;
+}
+
+.gallery-item img:not([src]) + .gallery-overlay::before,
+.gallery-item img[src=""] + .gallery-overlay::before,
+.gallery-item img[src*="error"] + .gallery-overlay::before {
+    opacity: 1;
 }
 
 .gallery-overlay {
@@ -350,16 +401,18 @@ body {
     font-weight: 600;
     color: #fff;
     margin-bottom: 5px;
+    line-height: 1.2;
 }
 
 .gallery-overlay p {
     color: #ccc;
     font-size: 0.9rem;
+    line-height: 1.3;
 }
 
 /* Wallpapers Section */
 .wallpapers-section {
-    padding: 100px 40px;
+    padding: clamp(60px, 10vw, 100px) 40px;
     background: rgba(0, 0, 0, 0.9);
 }
 
@@ -383,9 +436,10 @@ body {
 
 .category-header h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     font-weight: 700;
     color: #fff;
+    line-height: 1.2;
 }
 
 .resolution {
@@ -395,6 +449,7 @@ body {
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .wallpaper-grid {
@@ -410,6 +465,7 @@ body {
     aspect-ratio: 16/9;
     transition: all 0.3s ease;
     background: #1a1a1a;
+    min-height: 150px;
 }
 
 .wallpaper-item.mobile {
@@ -425,6 +481,33 @@ body {
 
 .wallpaper-item:hover img {
     transform: scale(1.05);
+}
+
+/* Fallback for missing wallpaper images */
+.wallpaper-item::before {
+    content: 'Wallpaper';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #0066b1;
+    font-size: 1.2rem;
+    font-weight: 600;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.wallpaper-item img:not([src]), 
+.wallpaper-item img[src=""],
+.wallpaper-item img[src*="error"] {
+    opacity: 0;
+}
+
+.wallpaper-item img:not([src]) ~ .wallpaper-overlay::before,
+.wallpaper-item img[src=""] ~ .wallpaper-overlay::before,
+.wallpaper-item img[src*="error"] ~ .wallpaper-overlay::before {
+    opacity: 1;
 }
 
 .wallpaper-overlay {
@@ -479,6 +562,7 @@ body {
     gap: 8px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 102, 177, 0.3);
+    font-size: 0.9rem;
 }
 
 .download-btn:hover {
@@ -554,29 +638,84 @@ body {
         gap: 20px;
     }
     
-    .hero-title {
-        font-size: 2.5rem;
+    .nav-links .nav-link {
+        font-size: 0.9rem;
     }
     
-    .hero-name {
-        font-size: 3rem;
-        letter-spacing: 8px;
+    .hero-section {
+        padding: 10px;
+    }
+    
+    .hero-content {
+        padding: 0 10px;
+    }
+    
+    .bmw-logo-hero {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .bmw-logo-hero::after {
+        font-size: 18px;
     }
     
     .car-specs {
         flex-direction: column;
-        gap: 20px;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .spec-item {
+        width: 100%;
+        max-width: 200px;
     }
     
     .gallery-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     
     .wallpaper-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     
-    .section-header h2 {
-        font-size: 2rem;
+    .category-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .resolution {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .nav-brand {
+        font-size: 1.2rem;
+    }
+    
+    .nav-links {
+        gap: 15px;
+    }
+    
+    .main-content {
+        padding-top: 120px;
+    }
+    
+    .hero-section {
+        min-height: calc(100vh - 120px);
+    }
+    
+    .gallery-section,
+    .wallpapers-section {
+        padding: 40px 20px;
     }
 }
